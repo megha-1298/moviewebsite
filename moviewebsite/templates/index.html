@@ -1,0 +1,55 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<section class="wrapper">
+    <div class="container-fostrap">
+        <div>
+
+            <h1 class="text-center" style="font-family:Arial narrow; color:#ff6900;font-weight: normal;">
+    Top Movies
+</h1>
+        </div>
+        <br>
+        <div class="content">
+            <div class="container" >
+                <div class="row">
+                    {% for movie in movies %}
+                    <div class="col-md-4 col-sm-4">
+                        <div class="card" id="backdrop" style="border-radius: 10px;">
+                            <div class="img-card" style="display: block;margin-top: 10px;margin-bottom: 10px;margin-left: 10px;margin-right: 10px;">
+                            <img src="{{movie.image}}"  width="75%" style="border-radius: 10px";>
+                                <h3 class="text-center">{{movie.title}}</h3>
+                                <li>{{movie.release_date}}</li>
+                          </div>
+                            <div class="card-content">
+                                <h4 class="card-title">
+                                </h4>
+                            </div>
+                            <div class="card-read-more text-centre">
+                                <a href="{% url 'details' movie.id %}" class="btn btn-warning ">
+                                    Read More
+                                </a>
+                                <br>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

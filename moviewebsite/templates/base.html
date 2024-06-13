@@ -1,0 +1,187 @@
+<!doctype html>
+{% load static %}
+
+
+
+<!--
+            </center>
+        </div>
+    </div>
+</div>
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="{% static 'css/custom.css' %}">-->
+<!--    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >-->
+<!--    <script src="https://kit.fontawesome.com/863d75cd0e.js" crossorigin="anonymous"></script>-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <div class="container-fluid">
+        <div class="header">
+            <center>
+            </center>
+            </div>
+        </div>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Movie Review</title>
+<style>
+      body{
+      background-color:#151313;
+
+      }
+      #backdrop{
+      background-color:#FEF9E7;
+
+
+
+
+
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'index' %}">Movie Writer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_movies' %}">Add Movies</a>
+        </li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbar_Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbar_Dropdown">
+
+          <form method="get" id="categoryForm" class="px-4 py-3">
+              <select name="category" class="form-control" onchange="document.getElementById('categoryForm').submit();">
+                  <option value="">All Categories</option>
+
+                  {% for category in categories %}
+                  <option value="{{ category.name }}">{{ category.name }}</option>
+
+                  {% endfor %}
+              </select>
+          </form>
+    </div>
+        {% if user.is_authenticated %}
+
+<!--        <button type="submit">Filter</button>-->
+
+
+<!--        <li class="nav-item dropdown">-->
+<!--          <a class="nav-link dropdown-toggle" href="#" id="navbar_Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Category-->
+<!--            {{category}}-->
+<!--          </a>-->
+
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{user.username}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
+        </li>
+        {% endif %}
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+<!--        </li>-->
+      </ul>
+      <form class="d-flex" method="GET" action="{% url 'index'%}">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="title">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+    <br>
+    <div style="text-align: center;">
+<img src="{% static 'img/logo_movie.png' %}" alt="logimage" width="130px;" height="130px;" center>
+    </div>
+    <br>
+<!--&lt;!&ndash;    <div class="container mt-5">&ndash;&gt;-->
+<!--        <h1>{{category_name}} Movies</h1>-->
+<!--        <ul>-->
+<!--            {% for movie in movies %}-->
+<!--            <li>-->
+<!--                <a href="{% url 'details' id=movie.id %}">{{ movie.title }}</a>-->
+<!--&lt;!&ndash;                ({{ movie.category.name }})&ndash;&gt;-->
+<!--            </li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <img class="my_image my_image_padding" src="{% static 'img/movie_banner.png' %}" alt="movie_writer" width="1920px" height="240px" style="border-radius: 20px; padding-left: 50px;padding-right:50px";>
+
+
+    <h1></h1>
+
+
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+    <br>
+    <section></section>
+  <div>
+
+      <div class ="container">
+    <div class="container-fluid">
+        <div class = "footer navbar-fixed-bottom my_footer">
+            <p class="text-center" style="background-color:#orange; height:60px;padding-top:20px;font-size:14px;color:white;border-radius: 10px">&copy;  pvt ltd. All rights Reserve</p>
+            </div>
+        </div>
+    </div>
+</div>
+  </section>
+  <script src="{% static 'js/popper.min.js' %}" ></script>
+<script src="{% static 'js/bootstrap.min.js' %}" ></script>
+  </body>
+</html>
